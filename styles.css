@@ -1,0 +1,130 @@
+/* ###################################################
+##################### BODY ########################
+################################################### */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial;
+    background: linear-gradient(0deg, #453266, #180f2a);
+    color: white;
+    text-align: center;
+    /* padding-top: 80px; */
+}
+
+/* ###################################################
+##################### FORM ########################
+################################################### */
+
+.form-transparent {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Белый цвет, 70% непрозрачности */
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-darker {
+    background-color: rgba(36, 11, 51, 0.158);
+    border-radius: 10px;
+    margin: 0px 20px;
+    padding: 10px 0px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.form-adaptive-size {
+    min-width: 500px;
+    max-width: 1000px;
+    /* padding: 20px; */
+    margin: 0px auto;
+}
+
+/* ###################################################
+###################### Div #########################
+################################################### */
+
+/* div.profile-block {
+    
+} */
+
+.background-photo {
+    /* height: 400px; */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Затемнение фоновой картинки линейно вниз */
+.background-photo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(0deg, #000, transparent, transparent);
+    opacity: 0.7;
+}
+
+.background-img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    transition: filter 0.4s;
+    filter: brightness(0.75);
+    display: block;
+}
+
+.avatar-margin {
+    position: relative;
+    height: 100px;
+}
+
+.avatar-container {
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    width: 200px;
+    height: 200px;
+    margin: -100px;
+    left: 50%;
+    border-radius: 50%;
+
+    /* background-color: #ccc; */
+}
+
+/* ###################################################
+###################### JS #########################
+################################################### */
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    inset: 0;
+}
+
+/* ###################################################
+################### Elements ######################
+################################################### */
+
+a {
+    color: #38bdf8;
+}
+
+.avatar-img {
+    position: static;
+    max-width: 100%;
+    /* transform: translate(-50%, -50%); */
+    /*left: 50%; */
+}
