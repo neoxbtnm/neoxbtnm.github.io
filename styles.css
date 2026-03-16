@@ -1,74 +1,114 @@
+@import url("https://fonts.cdnfonts.com/css/helvetica-neue-55");
+
 /* ###################################################
-##################### BODY ########################
+#################### VARIABLES ######################
+################################################### */
+
+:root {
+    --border-radius: 10px;
+
+    --color-gradient-background: linear-gradient(0deg, #453266, #180f2a);
+    --color-main-form: rgba(255, 255, 255, 0.1);
+    --color-second-form: rgba(19, 6, 27, 0.45);
+    --color-style-1-block: rgb(49, 43, 53);
+    --color-text-block: #cecece;
+    --color-category-border-color: rgb(117, 117, 117);
+    --color-text-header-spec: rgb(14, 119, 58);
+
+    --font-family-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --font-size-small: 1.2em;
+}
+
+/* ###################################################
+###################### BASE #########################
 ################################################### */
 
 html,
 body {
-    height: 100%;
     margin: 0;
+    font-family: var(--font-family-main);
 }
 
 body {
-    font-family: Arial;
-    background: linear-gradient(0deg, #453266, #180f2a);
+    min-height: 100vh;
+    background: var(--color-gradient-background);
     color: white;
     text-align: center;
-    /* padding-top: 80px; */
+}
+
+a {
+    color: #38bdf8;
+    text-decoration: none;
 }
 
 /* ###################################################
-##################### FORM ########################
+##################### LAYOUT ########################
 ################################################### */
 
 .form-transparent {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Белый цвет, 70% непрозрачности */
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    z-index: 1;
     position: relative;
     overflow: hidden;
-}
 
-.form-darker {
-    background-color: rgba(36, 11, 51, 0.158);
-    border-radius: 10px;
-    margin: 0px 20px;
-    padding: 10px 0px;
-    align-items: center;
-    align-content: center;
-    text-align: center;
+    background: var(--color-main-form);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .form-adaptive-size {
     min-width: 500px;
     max-width: 1000px;
-    /* padding: 20px; */
-    margin: 0px auto;
+    margin: 0 10px;
+}
+
+@media (min-width: 1020px) {
+    .form-adaptive-size {
+        margin: 0 auto;
+    }
+}
+
+.form-darker {
+    margin: 10px 20px;
+    padding: 10px 0;
+
+    background: var(--color-second-form);
+    border-radius: var(--border-radius);
+}
+
+.form-grid-250{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.form-grid-350{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.form-category {
+    position: relative;
+    padding-top: 40px;
+    box-sizing: border-box;
 }
 
 /* ###################################################
-###################### Div #########################
+################### PROFILE HEADER ##################
 ################################################### */
 
-/* div.profile-block {
-    
-} */
-
 .background-photo {
-    /* height: 400px; */
     position: relative;
     overflow: hidden;
 }
 
-/* Затемнение фоновой картинки линейно вниз */
 .background-photo::after {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset: 0;
+
     background: linear-gradient(0deg, #000, transparent, transparent);
     opacity: 0.7;
 }
@@ -76,12 +116,18 @@ body {
 .background-img {
     width: 100%;
     max-height: 300px;
+
+    display: block;
     object-fit: cover;
     object-position: center;
-    transition: filter 0.4s;
+
     filter: brightness(0.75);
-    display: block;
+    transition: filter 0.4s;
 }
+
+/* ###################################################
+###################### AVATAR #######################
+################################################### */
 
 .avatar-margin {
     position: relative;
@@ -90,42 +136,122 @@ body {
 
 .avatar-container {
     position: absolute;
-    overflow: hidden;
-    display: flex;
+    left: 50%;
+
     width: 200px;
     height: 200px;
     margin: -100px;
-    left: 50%;
-    border-radius: 50%;
 
-    /* background-color: #ccc; */
+    display: flex;
+    overflow: hidden;
+
+    border-radius: 50%;
+}
+
+.avatar-img {
+    max-width: 100%;
 }
 
 /* ###################################################
-###################### JS #########################
+###################### BLOCKS #######################
+################################################### */
+
+.style-1-block {
+    display: flex;
+    justify-content: flex-start;
+
+    height: 55px;
+    min-width: 100px;
+
+    margin: 10px 10px 0;
+    overflow: hidden;
+
+    background: var(--color-style-1-block);
+    border-radius: var(--border-radius);
+}
+
+.style-1-block img {
+    height: 80%;
+    margin: auto 10px;
+
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
+
+.style-gaming-block {
+    height: 90px;
+}
+
+/* ###################################################
+###################### TEXT #########################
+################################################### */
+
+h1.nick {
+    margin: 20px;
+
+    font-size: 2.5em;
+    font-weight: 500;
+}
+
+.category-name {
+    position: absolute;
+    top: 0;
+    width: 96%;
+
+    margin: 10px 20px;
+
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.category-border {
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-color: var(--color-category-border-color);
+}
+
+.text-block {
+    margin: 10px;
+
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--color-text-block);
+}
+
+.name-block {
+    flex: 1;
+    align-self: center;
+
+    padding-right: 10px;
+
+    color: white;
+    font-weight: 500;
+    font-size: var(--font-size-small);
+}
+
+span.name-block {
+    font-size: 0.9em;
+}
+
+.style-gaming-block p {
+    margin: 0px;
+}
+
+p.spec {
+    color: var(--color-text-header-spec);
+}
+
+/* ###################################################
+###################### PARTICLES ####################
 ################################################### */
 
 #particles-js {
     position: fixed;
+    inset: 0;
+
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    inset: 0;
-}
 
-/* ###################################################
-################### Elements ######################
-################################################### */
-
-a {
-    color: #38bdf8;
-}
-
-.avatar-img {
-    position: static;
-    max-width: 100%;
-    /* transform: translate(-50%, -50%); */
-    /*left: 50%; */
+    z-index: 0;
 }
